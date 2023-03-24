@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMover : MonoBehaviour
 {
-    [SerializeField] private List<Waypoint> waypoints = new();
+    [SerializeField] private List<Waypoint> path = new();
     [SerializeField] [Range(0f, 5f)] private float speed = 2f;
     
     private WaitForEndOfFrame _pathWaitTime;
@@ -12,12 +12,31 @@ public class EnemyMover : MonoBehaviour
     private void Start()
     {
         _pathWaitTime = new WaitForEndOfFrame();
+        FindPath();
+        ReturnToStart();
         StartCoroutine(FollowPath());
+    }
+
+    private void FindPath()
+    {
+        path.Clear();
+        
+        var waypoints = GameObject.FindGameObjectsWithTag("Path");
+
+        foreach (var waypoint in waypoints)
+        {
+            path.Add(waypoint.GetComponent<Waypoint>());
+        }
+    }
+
+    private void ReturnToStart()
+    {
+        transform.position = path[0].transform.position;
     }
 
     private IEnumerator FollowPath()
     {
-        foreach (var waypoint in waypoints)
+        foreach (var waypoint in path)
         {
             var starterPosition = transform.position;
             var endPosition = waypoint.transform.position;
@@ -31,5 +50,6 @@ public class EnemyMover : MonoBehaviour
                 yield return _pathWaitTime;
             }
         }
+        Destroy(gameObject);
     }
 }
