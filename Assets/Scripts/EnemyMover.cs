@@ -9,7 +9,7 @@ public class EnemyMover : MonoBehaviour
     
     private WaitForEndOfFrame _pathWaitTime;
 
-    private void Start()
+    private void OnEnable()
     {
         _pathWaitTime = new WaitForEndOfFrame();
         FindPath();
@@ -50,6 +50,6 @@ public class EnemyMover : MonoBehaviour
                 yield return _pathWaitTime;
             }
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
