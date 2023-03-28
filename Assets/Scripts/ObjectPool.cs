@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -20,7 +19,7 @@ public class ObjectPool : MonoBehaviour
     {
         _pool = new GameObject[poolSize];
 
-        for (int i = 0; i < _pool.Length; i++)
+        for (var i = 0; i < _pool.Length; i++)
         {
             _pool[i] = Instantiate(enemyPrefab, transform);
             _pool[i].SetActive(false);
@@ -44,13 +43,11 @@ public class ObjectPool : MonoBehaviour
 
     private void EnableObjectInPool()
     {
-        for (int i = 0; i < _pool.Length; i++)
+        foreach (var t in _pool)
         {
-            if (!_pool[i].activeInHierarchy)
-            {
-                _pool[i].SetActive(true);
-                return;
-            }
+            if (t.activeInHierarchy) continue;
+            t.SetActive(true);
+            return;
         }
     }
 }
