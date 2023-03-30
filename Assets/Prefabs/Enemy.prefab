@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: []
-  speed: 1.5
+  speed: 1
 --- !u!114 &3660494003163437572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,3 +171,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9dbeb32e05f284b9a7eaa3f5392598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldReward: 25
+  goldPenalty: 25
