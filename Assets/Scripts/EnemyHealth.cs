@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHitPoints = 5;
+    [SerializeField] private int maxHitPoints = 3;
 
     private Enemy _enemy;
     private int _currentHitPoints;
