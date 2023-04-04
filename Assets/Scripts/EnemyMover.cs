@@ -14,11 +14,11 @@ public class EnemyMover : MonoBehaviour
     private void Start()
     {
         _enemy = GetComponent<Enemy>();
+        _pathWaitTime = new WaitForEndOfFrame();
     }
 
     private void OnEnable()
     {
-        _pathWaitTime = new WaitForEndOfFrame();
         FindPath();
         ReturnToStart();
         StartCoroutine(FollowPath());
@@ -28,17 +28,28 @@ public class EnemyMover : MonoBehaviour
     {
         path.Clear();
         
-        var waypoints = GameObject.FindGameObjectsWithTag("Path");
+        var parent = GameObject.FindGameObjectWithTag("Path");
 
-        foreach (var waypoint in waypoints)
+        foreach (Transform child in parent.transform)
         {
-            path.Add(waypoint.GetComponent<Waypoint>());
+            var waypoint = child.GetComponent<Waypoint>();
+
+            if (waypoint != null)
+            {
+                path.Add(waypoint);
+            }
         }
     }
 
     private void ReturnToStart()
     {
         transform.position = path[0].transform.position;
+    }
+
+    private void FinishPath()
+    {
+        _enemy.StealGold();
+        gameObject.SetActive(false);
     }
 
     private IEnumerator FollowPath()
@@ -57,7 +68,6 @@ public class EnemyMover : MonoBehaviour
                 yield return _pathWaitTime;
             }
         }
-        _enemy.StealGold();
-        gameObject.SetActive(false);
+        FinishPath();
     }
 }
