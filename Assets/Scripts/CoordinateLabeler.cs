@@ -17,7 +17,7 @@ public class CoordinateLabeler : MonoBehaviour
     {
         _waypoint = GetComponentInParent<Waypoint>();
         _label = GetComponent<TextMeshPro>();
-        _label.enabled = false;
+        _label.enabled = true;
         DisplayCoordinates();
     }
 

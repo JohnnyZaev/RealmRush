@@ -28,8 +28,8 @@ public class ObjectPool : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SpawnEnemy());
         _waitTime = new WaitForSeconds(spawnTime);
+        StartCoroutine(SpawnEnemy());
     }
 
     private IEnumerator SpawnEnemy()

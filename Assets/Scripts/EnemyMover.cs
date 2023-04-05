@@ -54,8 +54,9 @@ public class EnemyMover : MonoBehaviour
 
     private IEnumerator FollowPath()
     {
-        foreach (var waypoint in path)
+        for (var index = 1; index < path.Count; index++)
         {
+            var waypoint = path[index];
             var starterPosition = transform.position;
             var endPosition = waypoint.transform.position;
             var travelPercent = 0f;
@@ -68,6 +69,7 @@ public class EnemyMover : MonoBehaviour
                 yield return _pathWaitTime;
             }
         }
+
         FinishPath();
     }
 }
