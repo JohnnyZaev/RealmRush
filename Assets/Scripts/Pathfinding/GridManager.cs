@@ -14,6 +14,13 @@ namespace Pathfinding
             CreateGrid();
         }
 
+        public Node GetNode(Vector2Int coordinates)
+        {
+            if (!grid.ContainsKey(coordinates))
+                return null;
+            return grid[coordinates];
+        }
+
         private void CreateGrid()
         {
             for (var x = 0; x < gridSize.x; x++)

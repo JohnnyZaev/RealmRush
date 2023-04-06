@@ -1,3 +1,4 @@
+using Pathfinding;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -8,14 +9,16 @@ public class CoordinateLabeler : MonoBehaviour
 {
     [SerializeField] private Color defaultColor = Color.white;
     [SerializeField] private Color blockedColor = Color.gray;
+    [SerializeField] private Color exploredColor = Color.yellow;
+    [SerializeField] private Color pathColor = new Color(1f, 0.5f, 0f);
     
     private TextMeshPro _label;
     private Vector2Int _coordinates;
-    private Waypoint _waypoint;
+    private GridManager gridManager;
 
     private void Awake()
     {
-        _waypoint = GetComponentInParent<Waypoint>();
+        gridManager = FindObjectOfType<GridManager>();
         _label = GetComponent<TextMeshPro>();
         _label.enabled = true;
         DisplayCoordinates();
@@ -41,7 +44,22 @@ public class CoordinateLabeler : MonoBehaviour
 
     private void ColorCoordinates()
     {
-        _label.color = _waypoint.IsPlaceable ? defaultColor : blockedColor;
+        if (gridManager == null)
+            return;
+
+        var node = gridManager.GetNode(_coordinates);
+
+        if (node == null)
+            return;
+        
+        if (!node.isWalkable)
+            _label.color = blockedColor;
+        else if (node.isPath)
+            _label.color = pathColor;
+        else if (node.isExplored)
+            _label.color = exploredColor;
+        else
+            _label.color = defaultColor;
     }
 
     private void DisplayCoordinates()
