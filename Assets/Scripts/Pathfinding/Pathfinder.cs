@@ -25,8 +25,7 @@ namespace Pathfinding
 
         private void Awake()
         {
-            _startingNode = new Node(startCoordinates, true);
-            _destinationNode = new Node(endCoordinates, true);
+
             gridManager = FindObjectOfType<GridManager>();
             if (gridManager != null)
             {
@@ -36,7 +35,10 @@ namespace Pathfinding
 
         private void Start()
         {
+            _startingNode = grid[startCoordinates];
+            _destinationNode = grid[endCoordinates];
             BreadthFirstSearch();
+            BuildPath();
         }
 
         private void ExploreNeighbors()
@@ -56,6 +58,7 @@ namespace Pathfinding
                 {
                     if (!reached.ContainsKey(neighbor.coordinates) && neighbor.isWalkable)
                     {
+                        neighbor.connectedTo = currentSearchNode;
                         reached.Add(neighbor.coordinates, neighbor);
                         frontier.Enqueue(neighbor);
                     }
@@ -79,6 +82,25 @@ namespace Pathfinding
                     isRunning = false;
                 }
             }
+        }
+
+        List<Node> BuildPath()
+        {
+            List<Node> path = new List<Node>();
+            Node currentNode = _destinationNode;
+            
+            path.Add(currentNode);
+            currentNode.isPath = true;
+
+            while (currentNode.connectedTo != null)
+            {
+                currentNode = currentNode.connectedTo;
+                path.Add(currentNode);
+                currentNode.isPath = true;
+            }
+            
+            path.Reverse();
+            return path;
         }
     }
 }
