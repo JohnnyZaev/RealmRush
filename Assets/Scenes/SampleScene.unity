@@ -15966,7 +15966,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03eb9ca30a9675c42b61673ba67a3cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 5, y: 5}
+  gridSize: {x: 10, y: 10}
+  unityGridSize: 10
 --- !u!4 &1898528353
 Transform:
   m_ObjectHideFlags: 0
@@ -18658,19 +18659,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1650333836, guid: 8bba2e9212f3d3b498c11987d9769ec4, type: 3}
       propertyPath: endCoordinates.x
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1650333836, guid: 8bba2e9212f3d3b498c11987d9769ec4, type: 3}
       propertyPath: endCoordinates.y
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1650333836, guid: 8bba2e9212f3d3b498c11987d9769ec4, type: 3}
       propertyPath: startCoordinates.x
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1650333836, guid: 8bba2e9212f3d3b498c11987d9769ec4, type: 3}
       propertyPath: startCoordinates.y
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1650333836, guid: 8bba2e9212f3d3b498c11987d9769ec4, type: 3}
       propertyPath: currentGridNode.coordinates.x

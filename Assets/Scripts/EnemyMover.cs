@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy))]
 public class EnemyMover : MonoBehaviour
 {
-    [SerializeField] private List<Waypoint> path = new();
+    [SerializeField] private List<Tile> path = new();
     [SerializeField] [Range(0f, 5f)] private float speed = 2f;
     
     private WaitForEndOfFrame _pathWaitTime;
@@ -32,7 +32,7 @@ public class EnemyMover : MonoBehaviour
 
         foreach (Transform child in parent.transform)
         {
-            var waypoint = child.GetComponent<Waypoint>();
+            var waypoint = child.GetComponent<Tile>();
 
             if (waypoint != null)
             {

@@ -64,9 +64,11 @@ public class CoordinateLabeler : MonoBehaviour
 
     private void DisplayCoordinates()
     {
+        if (gridManager == null)
+            return;
         var position = transform.parent.position;
-        _coordinates.x = Mathf.RoundToInt(position.x / EditorSnapSettings.move.x);
-        _coordinates.y = Mathf.RoundToInt(position.z / EditorSnapSettings.move.z);
+        _coordinates.x = Mathf.RoundToInt(position.x / gridManager.UnityGridSize);
+        _coordinates.y = Mathf.RoundToInt(position.z / gridManager.UnityGridSize);
         _label.text = $"{_coordinates.x}.{_coordinates.y}";
     }
 
