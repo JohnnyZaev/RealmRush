@@ -6,7 +6,16 @@ namespace Pathfinding
     public class Pathfinder : MonoBehaviour
     {
         [SerializeField] private Vector2Int startCoordinates;
+        public Vector2Int StartCoordinates
+        {
+            get { return startCoordinates; }
+        }
+        
         [SerializeField] private Vector2Int endCoordinates;
+        public Vector2Int EndCoordinates
+        {
+            get { return endCoordinates; }
+        }
 
         private Node _startingNode;
         private Node _destinationNode;
@@ -29,14 +38,13 @@ namespace Pathfinding
             if (gridManager != null)
             {
                 grid = gridManager.Grid;
+                _startingNode = grid[startCoordinates];
+                _destinationNode = grid[endCoordinates];
             }
         }
 
         private void Start()
         {
-            _startingNode = grid[startCoordinates];
-            _destinationNode = grid[endCoordinates];
-
             GetNewPath();
         }
 
@@ -74,6 +82,10 @@ namespace Pathfinding
 
         private void BreadthFirstSearch()
         {
+            
+            _startingNode.isWalkable = true;
+            _destinationNode.isWalkable = true;
+            
             frontier.Clear();
             reached.Clear();
             

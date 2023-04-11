@@ -18735,19 +18735,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1650333836, guid: 8bba2e9212f3d3b498c11987d9769ec4, type: 3}
       propertyPath: endCoordinates.x
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1650333836, guid: 8bba2e9212f3d3b498c11987d9769ec4, type: 3}
       propertyPath: endCoordinates.y
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1650333836, guid: 8bba2e9212f3d3b498c11987d9769ec4, type: 3}
       propertyPath: startCoordinates.x
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1650333836, guid: 8bba2e9212f3d3b498c11987d9769ec4, type: 3}
       propertyPath: startCoordinates.y
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1650333836, guid: 8bba2e9212f3d3b498c11987d9769ec4, type: 3}
       propertyPath: currentGridNode.coordinates.x
