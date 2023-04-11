@@ -26,16 +26,26 @@ public class EnemyMover : MonoBehaviour
 
     private void OnEnable()
     {
-        RecalculatePath();
         ReturnToStart();
+        RecalculatePath(true);
         StartCoroutine(FollowPath());
     }
 
-    private void RecalculatePath()
+    private void RecalculatePath(bool resetPath)
     {
+        Vector2Int coordinates = new Vector2Int();
+
+        if (resetPath)
+        {
+            coordinates = pathfinder.StartCoordinates;
+        }
+        else
+        {
+            coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
+        }
         path.Clear();
 
-        path = pathfinder.GetNewPath();
+        path = pathfinder.GetNewPath(coordinates);
     }
 
     private void ReturnToStart()

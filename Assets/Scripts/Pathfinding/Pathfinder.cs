@@ -50,8 +50,12 @@ namespace Pathfinding
 
         public List<Node> GetNewPath()
         {
+            return GetNewPath(startCoordinates);
+        }
+        public List<Node> GetNewPath(Vector2Int coordinates)
+        {
             gridManager.ResetNodes();
-            BreadthFirstSearch();
+            BreadthFirstSearch(coordinates);
             return BuildPath();
         }
 
@@ -80,9 +84,8 @@ namespace Pathfinding
             }
         }
 
-        private void BreadthFirstSearch()
+        private void BreadthFirstSearch(Vector2Int coordinates)
         {
-            
             _startingNode.isWalkable = true;
             _destinationNode.isWalkable = true;
             
@@ -90,8 +93,8 @@ namespace Pathfinding
             reached.Clear();
             
             bool isRunning = true;
-            frontier.Enqueue(_startingNode);
-            reached.Add(startCoordinates, _startingNode);
+            frontier.Enqueue(grid[coordinates]);
+            reached.Add(coordinates, grid[coordinates]);
 
             while (frontier.Count > 0 && isRunning)
             {
@@ -145,7 +148,7 @@ namespace Pathfinding
 
         public void NotifyReceivers()
         {
-            BroadcastMessage("RecalculatePath", SendMessageOptions.DontRequireReceiver);
+            BroadcastMessage("RecalculatePath", false, SendMessageOptions.DontRequireReceiver);
         }
     }
 }
